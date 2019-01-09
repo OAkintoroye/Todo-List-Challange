@@ -4,7 +4,7 @@
 		<meta charset="ISO-8859-1">
 		<title>To Do List</title>
 		</head>
-	<body>
+	<body>	
 		<?php
 			//create connection
 			$connectionA = new mysqli("localhost","root","");

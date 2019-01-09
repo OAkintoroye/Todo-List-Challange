@@ -3,17 +3,13 @@
 		<title>Delete Task Page</title>
 	</head>
 	<body>
+	<p><a href="./home.php"> Back</a></p>
 	<center>
 	<h1>ToDo List - Delete Task </h1>
 	<h3>Select Task to Delete</h3>
 	
 	<?php
-		$connectionA = new mysqli("localhost","root","");
-		// Check connection
-		if ($connectionA->connect_error){
-			die("Connection failed: " . $connectionA->connect_error);
-		}
-		mysqli_select_db($connectionA,'todolist');
+		include 'connection.php';
 		$query = "SELECT * FROM task";
 		$result = mysqli_query($connectionA,$query);
 	?>

@@ -1,16 +1,27 @@
 <html>
 	<body>
 	<?php
+		include 'connection.php';
+		
 		$name = $_POST['name'];
 		$date = $_POST['date'];
-		//create connection
-		$connectionA = new mysqli("localhost","root","");
-		// Check connection
-		if ($connectionA->connect_error) {
-			die("Connection failed: " . $connectionA->connect_error);
-		} 
-		//connect to database
-		mysqli_select_db($connectionA,'todolist');
+		$status = $_POST['status'];
+
+		switch($status){
+			case 1:
+				$status = "Incomplete";
+				break;
+			case 2:
+				$status = "Pending";
+				break;
+			case 3:
+				$status="Complete";
+				break;
+			default:
+				$status = "Incomplete";
+			
+		}
+		
 		//query returns name of duplicated task name
 		$query = "SELECT taskName a FROM task WHERE EXISTS(SELECT taskName FROM task WHERE taskName ='$name')";
 		$result = mysqli_query($connectionA,$query);
@@ -25,7 +36,12 @@
 		}
 		
 		if ($match == false){
-			$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$name','$date','Incomplete')";
+			//TODO: if same day as current date, it should not make status Past Due Date
+			if($date < date("Y-m-d"))
+				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$name','$date','Past Due Date')";
+			else
+
+				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$name','$date','$status')";
 			if ($connectionA->query($sql) == FALSE) {
 				echo "Error inserting data: " . $connectionA->error;
 				}

@@ -1,12 +1,7 @@
 <html>
 	<body>
 	<?php
-		$connectionA = new mysqli("localhost","root","");
-		// Check connection
-		if ($connectionA->connect_error){
-			die("Connection failed: " . $connectionA->connect_error);
-		}
-		mysqli_select_db($connectionA,'todolist');
+		include 'connection.php';
 		
 		$query = "Select Count(*) a From task";
 		$result = mysqli_query($connectionA,$query);
@@ -21,7 +16,7 @@
 			$selectedTN = $_POST['selected'];
 			$query = "DELETE FROM task WHERE taskName ='$selectedTN'";
 			if(mysqli_query($connectionA,$query)){
-				echo "Deletion Successful";
+				//echo "Deletion Successful";
 				header("Refresh: 0, url=home.php");
 			}				
 			else
