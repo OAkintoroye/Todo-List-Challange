@@ -37,8 +37,8 @@
 	}
 
 		if ($match == false){
-			//TODO: Comparing time still broken :/ fix it
 			//use strtotime to make sure both dates have the same format
+			date_default_timezone_set('America/Detroit');
 			if(strtotime($date) < strtotime(date("Y-m-d")))
 				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','Past Due Date')";
 			else

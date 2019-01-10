@@ -11,9 +11,11 @@
             include 'connection.php';
             $query = "SELECT * FROM task";
             $result = mysqli_query($connectionA,$query);
-        ?>
 
-        <select name = selected>
+            
+        ?>
+        
+        <select name = "selected">
 
         <?php
             while($row = mysqli_fetch_array($result)){
