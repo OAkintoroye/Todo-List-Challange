@@ -3,7 +3,7 @@
 	<?php
 		include 'connection.php';
 		
-		$name = $_POST['name'];
+		$taskName = $_POST['name'];
 		$date = $_POST['date'];
 		$status = $_POST['status'];
 
@@ -19,29 +19,31 @@
 				break;
 			default:
 				$status = "Incomplete";
+				break;
 			
 		}
 		
 		//query returns name of duplicated task name
-		$query = "SELECT taskName a FROM task WHERE EXISTS(SELECT taskName FROM task WHERE taskName ='$name')";
+		$query = "SELECT taskName a FROM task WHERE EXISTS(SELECT taskName FROM task WHERE taskName ='$taskName')";
 		$result = mysqli_query($connectionA,$query);
 		
 		$match = false;
 		while ($taskexists = $result->fetch_assoc()){
-			if ($taskexists['a'] == $name){
+			if ($taskexists['a'] == $taskName){
 				$match = true;
 				echo "<img src='red-x12.jpg'> This task name exists. Please select a different name";
 				header("Refresh: 2, url=home.php");
-			}		
-		}
-		
+		}		
+	}
+
 		if ($match == false){
+			//TODO: Comparing time still broken :/ fix it
 			//use strtotime to make sure both dates have the same format
 			if(strtotime($date) < strtotime(date("Y-m-d")))
-				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$name','$date','Past Due Date')";
+				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','Past Due Date')";
 			else
+				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','$status')";
 
-				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$name','$date','$status')";
 			if ($connectionA->query($sql) == FALSE) {
 				echo "Error inserting data: " . $connectionA->error;
 				}
