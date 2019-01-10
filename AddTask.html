@@ -1,24 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<title>Add Task Page</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Add Task Page</title>	
 	</head>
 	<body>
-	<p><a href="./home.php"> Back</a></p>
-	<center>
-	<h1>ToDo List - Add Task </h1>
-	<form action="add.php" method="post">
-	<b>Task Name:</b><br/>
-	<input type="text" name="name" required size=40><br/>
-	<b>Task Date:</b><br/>
-	<input type="date" name="date" required><br/>
-	<b>Task Status:</b><br/>
-	<select name="status" id="t_status">
-		<option value="1">Incomplete</option>
-		<option value="2">Pending</option>
-		<option value="3">Complete</option>
-	</select><br/><br/>
-	<input type="submit" value="Confirm Task"/>
-	</form>
-	</center>
-</body>
+		<p><a href="./home.php"> Back</a></p>
+		<center>
+		<h1>ToDo List - Add Task </h1>
+		<form action="add.php" method="post">
+		<b>Task Name:</b><br/>
+		<input type="text" name="name" required size=40><br/>
+		<b>Task Date:</b><br/>
+		<input type="date" name="date" required><br/>
+		<b>Task Status:</b><br/>
+		<select name="status" id="t_status">
+			<option value="1">Incomplete</option>
+			<option value="2">Pending</option>
+			<option value="3">Complete</option>
+		</select><br/><br/>
+		<input type="submit" value="Confirm Task"/>
+		</form>
+		</center>
+	</body>
 </html>

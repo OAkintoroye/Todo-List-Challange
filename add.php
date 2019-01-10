@@ -36,8 +36,8 @@
 		}
 		
 		if ($match == false){
-			//TODO: if same day as current date, it should not make status Past Due Date
-			if($date < date("Y-m-d"))
+			//use strtotime to make sure both dates have the same format
+			if(strtotime($date) < strtotime(date("Y-m-d")))
 				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$name','$date','Past Due Date')";
 			else
 

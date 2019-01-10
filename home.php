@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="ISO-8859-1">
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>To Do List</title>
 		</head>
 	<body>	
@@ -19,7 +21,7 @@
 			//connect to database
 			mysqli_select_db($connectionA,'todolist');
 				
-			//create table with two columns
+			//create table with three columns
 			$sql = "CREATE TABLE IF NOT EXISTS Task(
 			taskName VARCHAR(40) NOT NULL,
 			taskDate VARCHAR(40) NOT NULL,
@@ -65,6 +67,8 @@
 		</table>
 		<button type="button" onclick="location.href = 'AddTask.html';">Add Task</button>
 		<button type="button" onclick="location.href = 'DeleteTask.php';">Delete Task</button>
+		<button type="button" onclick="location.href = 'EditTask.php';">Edit Task</button>
+
 		</center>
 
 
