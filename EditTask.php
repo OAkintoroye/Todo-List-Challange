@@ -12,7 +12,7 @@
 
         <p><a href="./home.php"> Back</a></p>
         <?php 
-            include 'connection.php';
+            include 'connect.php';
         ?>
         <center>
             <h1>ToDo List - Edit Task </h1>

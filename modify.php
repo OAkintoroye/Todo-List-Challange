@@ -7,26 +7,35 @@
     </head>
     <body>
         <?php
-
-            include 'connection.php';
-            $query = "SELECT * FROM task";
+            include 'connect.php';
+            $query = "Select Count(*) a From task";
             $result = mysqli_query($connectionA,$query);
-
-            
-        ?>
-        
+           
+            while ($count = $result->fetch_assoc()){
+                $res = $count['a'];
+            }	
+            if($res > 0){
+                $query = "SELECT * FROM task";
+                $result = mysqli_query($connectionA,$query);
+             ?>
+                 
         <select name = "selected">
-
         <?php
             while($row = mysqli_fetch_array($result)){
                 echo '<option value="'.$row['taskName'].'">'.$row['taskName'].'</option>';
             }
-
             echo '<input type="submit" value="Submit">';
             mysqli_close($connectionA);
         ?>
-        
         </select>
+
+       <?php 
+            }
+            if($res == 0){
+                echo "<img src='red-x12.jpg'> There are no tasks avaliable.";
+			    header("Refresh: 2,url=home.php");
+            } 
+        ?>
     </body>
 </html>
 
