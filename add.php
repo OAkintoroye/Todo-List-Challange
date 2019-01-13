@@ -38,8 +38,8 @@
 
 		if ($match == false){
 			$userdate = new DateTime($date);
-			
-			if($userdate->diff(new DateTime)->format('%R') == '+')
+
+			if($userdate->diff(new DateTime)->format('%R') == '+' && $userdate->format('Y-m-d') <> Date('Y-m-d'))
 				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','Past Due Date')";
 			else
 				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','$status')";
