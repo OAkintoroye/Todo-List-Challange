@@ -37,10 +37,9 @@
 		}
 
 		if ($match == false){
-			//use strtotime to make sure both dates have the same format
-			date_default_timezone_set('America/Detroit');
-
-			if(strtotime($date) < strtotime(date("Y-m-d")))
+			$userdate = new DateTime($date);
+			
+			if($userdate->diff(new DateTime)->format('%R') == '+')
 				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','Past Due Date')";
 			else
 				$sql = "INSERT INTO task(taskName,taskDate,status) VALUES('$taskName','$date','$status')";
