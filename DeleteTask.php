@@ -13,7 +13,7 @@
 	<h3>Select Task to Delete</h3>
 	
 	<form action ="delete.php" method = "post">
-	<?php include 'modify.php'; ?>
+	<?php include 'list.php'; ?>
 	</form>
 
 	</center>

@@ -26,20 +26,27 @@
     $query = "SELECT taskName a FROM task WHERE EXISTS(SELECT taskName FROM task WHERE taskName ='$oldName')";
     $result = mysqli_query($connectionA,$query);
     $match = false;
-    while ($taskexists = $result->fetch_assoc()){
-        if ($taskexists['a'] == $taskName){
-            $match = true;
-            echo "<img src='red-x12.jpg'> This task name exists. Please select a different name";
-            header("Refresh: 2, url=home.php");
-        }	
-    }
+    if($oldName <> $taskName){
 
-    if($match == false){
-        $query = "UPDATE task SET taskName = '$taskName',taskdate = '$taskDate', status = '$taskStatus' WHERE taskName = '$oldName'";
-        if ($connectionA->query($query) == FALSE) {
-            echo "Error Updating data: " . $connectionA->error;
-        }
-         header("Refresh: 0, url=home.php");
+       while ($taskexists = $result->fetch_assoc()){
+            if ($taskexists['a'] == $taskName){
+                $match = true;
+                echo "<img src='red-x12.jpg'> This task name exists. Please select a different name";
+                header("Refresh: 2, url=home.php");
+            }	
+        } 
     }
+    else{
+        if($match == false){
+            $query = "UPDATE task SET taskName = '$taskName',taskdate = '$taskDate', status = '$taskStatus' WHERE taskName = '$oldName'";
+            if ($connectionA->query($query) == FALSE) {
+                echo "Error Updating data: " . $connectionA->error;
+            }
+         header("Refresh: 0, url=home.php");
+        }
+    }
+    
+
+    
    
 ?>

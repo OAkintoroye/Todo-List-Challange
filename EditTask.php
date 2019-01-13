@@ -19,7 +19,7 @@
             <h3>Select Task to Edit</h3>
             
             <form action ="edit.php" method = "post">
-            <?php include 'modify.php'; ?>
+            <?php include 'list.php'; ?>
             </form>
         </center>
             
